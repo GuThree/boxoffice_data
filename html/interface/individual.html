@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <title>个人中心</title>
+
+</head>
+<body>
+    <div class="container-fuild">
+        <!--顶栏-开始-->
+        <div id="include_head" class="row"></div>
+        <!--顶栏-结束-->
+        <div class="row">
+            <!--侧边导航栏-开始-->
+            <div id="include_list" class="content col-md-2 col-sm-3 col-xs-3"></div>
+            <!--侧边导航栏-结束-->
+
+            <!-- 正文内容 -->
+            <div class="col-md-10 col-sm-9 col-xs-9 ">
+                <div class="container-fluid scrollball">
+                    <div class="row-fluid">
+                        <div class="tabbable" id="tabs-913885">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#panel-102577" data-toggle="tab">我的资料</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-39047" data-toggle="tab">子账号管理</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-10101" data-toggle="tab">我的订单</a>
+                                </li>
+                            </ul>
+                
+                
+                
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="panel-102577">
+                                    <p>
+                                        <div>
+                                            <div style="padding-top: 5px;height: 100px;line-height: 20px">
+                                                <div style="float: left;position: relative" >
+                                                    <span style="float: left">
+                                                        <img src="imgs/logo.png" height="65" width="65" class="img-circle">
+                                                    </span>
+                                                    <label style="margin-left: 30px; float: left" >
+                                                        <span id="UserName">用户姓名：未登录</span><br>
+                                                        <span id="Email">用户邮箱：未登录</span><br>
+                                                        <span id="registrationTime">注册时间：未登录</span>
+                                                        <br><br>
+                                                    <br>
+                                                    </label>
+                
+                                                    <label style="margin-left: 100px" > 
+                                                        <div>
+                                                            <a href="buy" >
+                                                                <span>升级会员</span>
+                                                            </a>
+                                                        </div>
+                                                    </label>
+                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </p>
+                                </div>
+                
+                
+                
+                                <div class="tab-pane" id="panel-39047">
+                                    <p>
+                                        <span>子账号列表：</span><br>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>昵称</th>
+                                                    <th>手机（登录账号）</th>
+                                                    <th>开通时间</th>
+                                                    <th>状态</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                        <div align="center">
+                                            <span>没有更多子账号了</span>
+                                        </div>
+                
+                                    </p>
+                                </div>
+                
+                                <div class="tab-pane" id="panel-10101">
+                                    <p>
+                                        <span>订单编号：</span>
+                                        <input style="height: 25px;" placeholder="请输入订单编号">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                                        <span>订单状态：</span>
+                                        <select style="height: 25px;">
+                                            <option>全部</option>
+                                            <option>未支付</option>
+                                            <option>已完成</option>
+                                            <option>支付失败</option>
+                                        </select>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            
+                                        <span>订单类型：</span>
+                                        <select style="height: 25px;">
+                                            <option>全部</option>
+                                            <option>购买会员</option>
+                                            <option>加油包</option>
+                                        </select>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                                        <button type="button" class="btn " data-toggle="modal" data-target="#Search">
+                                            <span>查询</span>
+                                        </button>
+                                        <br>
+                
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>订单编号</th>
+                                                    <th>订单类型</th>
+                                                    <th>产品名称</th>
+                                                    <th>订单生成时间</th>
+                                                    <th>订单金额</th>
+                                                    <th>支付时间</th>
+                                                    <th>支付类型</th>
+                                                    <th>订单状态</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                        <div align="center">
+                                            <span>没有更多订单了</span>
+                                        </div>
+                
+                                    </p>
+                                </div>
+                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //导入html文件
+        $(function () {
+            $("#include_list").load("/html/layouts/menu_list.html");
+        });
+
+        $(function () {
+            $("#include_head").load("/html/layouts/head.html");
+        });
+
+        //判断是否已登录
+        var userName = sessionStorage.getItem('UserName')
+        if(sessionStorage.length != 0 && sessionStorage.getItem('UserName')!='null'){
+            var userNameText=document.getElementById("UserName");
+            var emailText=document.getElementById("Email");
+            var registrationTimeText=document.getElementById("registrationTime");
+            var sessionUserName = sessionStorage.getItem('UserName');
+            
+            $.ajax({       //用ajax来实现不刷新网页的基础上更新数据
+                type:"post", //请求方式
+                url:"/getUserInformation", //路径
+                data:{
+                    userName
+                },
+                success:function(data){
+                    //解析json数据并进行处理
+                    var userInfo = JSON.parse(data.toString())
+                    var {UserName, Email, registrationTime} = userInfo[0]
+                    var newTime = new Date(registrationTime)
+                    registrationTime = newTime.getFullYear() + '-' + (newTime.getMonth() + 1) + '-' + newTime.getDate()
+
+                    userNameText.innerHTML = "用户姓名："+UserName
+                    emailText.innerHTML = "用户邮箱："+Email
+                    registrationTimeText.innerHTML = "注册时间："+registrationTime
+                }
+            });
+        } else {
+            window.location = "login"
+        }
+    </script>
+    
+</body>
+</html>

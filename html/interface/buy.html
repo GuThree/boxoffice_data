@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <title>壹玖影数</title>
+
+</head>
+<body>
+    <div class="container-fuild">
+        <!--顶栏-->
+        <div id="include_head" class="row"></div>
+        <!--顶栏-结束-->
+        <!-- 内容 -->
+        <div class="row">
+            <!--侧边导航栏-->
+            <div id="include_list"  class="content col-md-2 col-sm-3 col-xs-3"></div>
+            <!--侧边导航栏-结束-->
+
+            <!-- 正文内容 -->
+            <div class="col-md-10 col-sm-9 col-xs-9">
+                <div class="container-fluid scrollball">
+                    <div class="row-fluid">
+                        <div class="buy">
+                            <!-- Button trigger modal -->
+                            <br>
+                            <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+                                购买下载次数
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">购买下载次数</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            选择购买次数：
+                                            <select>
+                                                <option value ="20">20次（8折，省￥200）</option>
+                                                <option value ="50">50次（7折，省￥750）</option>
+                                                <option value ="100">100次（6折，省￥2000）</option>
+                                                <option value ="200">200次（5折，省￥5000）</option>
+                                            </select>
+
+                                            选择支付方式：
+                                            <select>
+                                                <option value ="WeiXin">微信</option>
+                                                <option value ="ZhiFuBao">支付宝</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="text-center">
+                                会员定价
+                            </h3>
+                            <div class="row-fluid" align="center">
+
+                                <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModalVIP">
+                                    <img alt="140x140" src="imgs/buy1.jpg" >
+                                </button>
+
+                                <div class="modal fade" id="myModalVIP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">购买续费</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                选择购买时长：
+                                                <select>
+                                                    <option value ="1 month">1个月（9折，省￥200）</option>
+                                                    <option value ="3 month">3个月（8折，省￥1,200）</option>
+                                                    <option value ="6 month">6个月（7折，省￥3,599）</option>
+                                                    <option value ="12 month">1个月（6折，省￥9,596）</option>
+                                                    <option value ="24 month">1个月（5折，省￥23,988）</option>
+                                                </select>
+                            
+                                                选择支付方式：
+                                                <select>
+                                                    <option value ="WeiXin">微信</option>
+                                                    <option value ="ZhiFuBao">支付宝</option>
+                                                </select>
+                                                <br><br><br>
+
+                                                售前售后有疑问<br>
+                                                联系客服咨询<br>
+                                                <div class="modal-body">
+                                                    <img src="imgs/buy4.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModalSVIP">
+                                    <img alt="140x140" src="imgs/buy2.jpg" >
+                                </button>
+
+                                <div class="modal fade" id="myModalSVIP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">购买续费</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                选择购买时长：
+                                                <select>
+                                                    <option value ="1 month">1个月（9折，省￥500）</option>
+                                                    <option value ="3 month">3个月（8折，省￥3000）</option>
+                                                    <option value ="6 month">6个月（7折，省￥8,999）</option>
+                                                    <option value ="12 month">1个月（6折，省￥23,996）</option>
+                                                    <option value ="24 month">1个月（5折，省￥59,988）</option>
+                                                </select>
+                            
+                                                选择支付方式：
+                                                <select>
+                                                    <option value ="WeiXin">微信</option>
+                                                    <option value ="ZhiFuBao">支付宝</option>
+                                                </select>
+                                                <br><br><br>
+
+                                                售前售后有疑问<br>
+                                                联系客服咨询<br>
+                                                <div class="modal-body">
+                                                    <img src="imgs/buy4.jpg" alt="">
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModalASK">
+                                    <img alt="140x140" src="imgs/buy3.jpg" >
+                                </button>
+
+                                <div class="modal fade" id="myModalASK" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">联系客服咨询</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="imgs/buy4.jpg" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                            <h3 class="text-center">
+                                支付常见问题
+                            </h3>
+                            <h3>
+                                1、可以开具发票吗？
+                            </h3>
+                            <p>
+                                购买后，您可前往“个人中心——发票管理”开具发票。无特殊或不可抗力的情况下，我司将在10个工作日内开具纸质发票。我司可开具增值税普通发票或增值税专用发票，其服务名称一栏内容是*信息技术服务*服务费*，开具的发票金额均为含税价格，税率6%。
+                            </p>
+                            <h3>
+                                2、已购买壹玖影数会员后可以升级到更高权限版本吗？
+                            </h3>
+                            <p>
+                                在壹玖影数付费升级会员后如需升级到更高权限的会员版本，可以进入付费页面，点击对应高级版本升级，在跳转的支付页面支付差价即可。
+                            </p>
+                            <h3>
+                                3、可以对公打款吗？可以微信或支付宝吗？
+                            </h3>
+                            <p>
+                                支持对公打款。对公充值的用户需要先联系壹玖影数客服提供付款凭证（电子回单）及开通号，客服处理账号升级并告知后，可前往发票管理页面开票。您也可以通过支付宝或微信支付进行付费。
+                            </p>
+                            <h3>
+                                4、线上开票注意事项
+                            </h3>
+                            <p>
+                                普票开具电子发票，专票开具纸质发票。
+                            </p>
+                            <p>
+                                1、增普票电子发票：提交开票申请后3个工作日内发送到客户填写的邮箱；（月末26日至月初5日期间不办理电子发票开票业务）
+                            </p>
+                            <p>
+                                增专发票：提交开票申请后15个工作日内完成订单审核及发票寄送
+                            </p>
+                            <p>
+                                2、正常情况下，开具的发票将以快递到付的形式寄出，若您的开票金额超过300元，则可享受寄付服务。
+                            </p>
+                            <h3>
+                                5、付费套餐到期后还可以继续使用吗？
+                            </h3>
+                            <p>
+                                当您购买的付费套餐过期后，将会自动转换为基础版，无法继续使用付费功能。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        //导入html文件
+        $(function () {
+                $("#include_list").load("/html/layouts/menu_list.html");
+            });
+
+            $(function () {
+                $("#include_head").load("/html/layouts/head.html");
+            });
+    </script>
+</body>
+</html>

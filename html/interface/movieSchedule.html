@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>壹玖影数</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/3.5.0/chart.js"></script>
+
+
+</head>
+
+<body>
+
+
+
+    <div class="container-fuild">
+
+        <!--顶栏-开始-->
+        <div id="include_head" class="row"></div>
+        <!--顶栏-结束-->
+        <div class="row">
+            <!--侧边导航栏-开始-->
+            <div id="include_list" class="content col-md-2 col-sm-3 col-xs-3"></div>
+            <!--侧边导航栏-结束-->
+
+            <!--正文内容-->
+            <div class="col-md-10 col-sm-9 col-xs-9">
+                <div class="container-fluid scrollball">
+                    <div class="row-fluid">
+
+                        <div style="margin-top: 20px; margin-bottom: 5px;">
+                            <div style="background-color: #b8b8b8; width: 5px; height: 18px; float: left;">
+                            </div>&nbsp<span style="font-size: 17px;">排片分布(场次)</span>
+                        </div>
+                        <div style="position: relative; height: 50vh;">
+                            <canvas id="barChart"
+                                style="display: inline-table; width: 98%;"></canvas>
+                        </div>
+
+                        <div style="margin-top: 10px; margin-bottom: 5px;">
+                            <div style="background-color: #b8b8b8; width: 5px; height: 18px; float: left;">
+                            </div>&nbsp<span style="font-size: 17px;">排片分布列表(场次)</span>
+                        </div>
+                        <table id="table0" data-t data-url="/RowPie_MovByShoCo_Lis" data-search="false"
+                            data-pagination="true" data-page-size="20" data-search-highlight="true"
+                            style="display: inline-table; width: 98%;">
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <script>
+
+        let $table0 = $('#table0')
+
+
+        function initTable() {
+            $table0.bootstrapTable({
+                // height: 550,
+                paginationDetailHAlign: ' hidden',  //隐藏分页信息
+                columns: [{
+                    field: 'Irank',
+                    title: '排名',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+
+                }, {
+                    field: 'MovieName',
+                    title: '影片名称',
+                    align: 'center',
+                    valign: 'middle'
+                }, {
+                    field: 'ReleaseDay',
+                    title: '上映天数',
+                    align: 'center',
+                    valign: 'middle'
+                }, {
+                    field: 'GenreMain',
+                    title: '影片类型',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'ShowCount',
+                    title: '总场次',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'ShowCountMoM',
+                    title: '总场次环比',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'SwShowCount',
+                    title: '上午场次',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'SwShowCountMoM',
+                    title: '上午场次环比',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'XwShowCount',
+                    title: '下午场次',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'XwShowCountMoM',
+                    title: '下午场次环比',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                {
+                    field: 'HjShowCount',
+                    title: '黄金场次',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                {
+                    field: 'HjShowCountMoM',
+                    title: '黄金场次环比',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                {
+                    field: 'JyShowCount',
+                    title: '加映场次',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                {
+                    field: 'JyShowCountMoM',
+                    title: '加映场次环比',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                ],
+            })
+        }
+
+
+        $(function () {
+            initTable()
+        })
+
+
+        //画图函数
+        function drawBarChart(data) {
+
+            data = data.slice(0, 10);  //只需10个数据
+
+            var label = [];
+            var SWdataset = [];
+            var XWdataset = [];
+            var HJdataset = [];
+            var JYdataset = [];
+            data.forEach(element => {
+                label.push(element['MovieName']);
+                SWdataset.push(element['SwShowCount'])
+                XWdataset.push(element['XwShowCount'])
+                HJdataset.push(element['HjShowCount'])
+                JYdataset.push(element['JyShowCount'])
+            });
+
+            new Chart(document.getElementById("barChart"), {
+                "type": "bar",  //图表类型
+                "data": {
+                    "labels": label,
+                    "datasets": [
+                        {
+                            label: '上午场',
+                            data: SWdataset,
+                            stack: 'Stack 0',
+                            backgroundColor: [
+                                'rgba(141, 150, 226, 1)',
+                            ],
+                            barPercentage: 0.5,
+                        },
+                        {
+                            label: '下午场',
+                            data: XWdataset,
+                            stack: 'Stack 0',
+                            backgroundColor: [
+                                'rgba(237, 158, 159, 1)',
+                            ],
+                            barPercentage: 0.5,
+                        },
+                        {
+                            label: '黄金场',
+                            data: HJdataset,
+                            stack: 'Stack 0',
+                            backgroundColor: [
+                                'rgba(121, 210, 220, 1)',
+                            ],
+                            barPercentage: 0.5,
+                        },
+                        {
+                            label: '加映场',
+                            data: JYdataset,
+                            stack: 'Stack 0',
+                            backgroundColor: [
+                                'rgba(250, 221, 177, 1)',
+                            ],
+                            barPercentage: 0.5,
+                        },
+                    ]
+                },
+                "options": {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                //配置图例属性
+                                font: {
+                                    size: 16
+                                }
+                            }
+                        },
+                    },
+                    // responsive: false,  //使得<canvas>的长宽度有效
+                    maintainAspectRatio: false,
+                    scales: {
+
+                        x: {
+                            grid: {
+                                display: false,
+                            },
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                callback: function (label, index, labels) {
+                                    return Math.floor(label / 10000) + '万';
+                                }
+                            }
+                        }
+                    }
+                },
+            });
+        };
+
+        //请求数据
+        $(function () {
+            $.ajax({
+                url: "/RowPie_MovByShoCo_Lis",
+                type: "get",
+                success: function (tdata) {
+                    // console.log(tdata);
+                    // 画图函数
+                    drawBarChart(tdata)
+                }
+            })
+        })
+
+        //导入html文件
+        $(function () {
+            $("#include_list").load("/html/layouts/menu_list.html");
+        });
+
+        $(function () {
+            $("#include_head").load("/html/layouts/head.html");
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>壹玖影数</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <!--chart.js的cdn-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/3.5.0/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fuild">
+
+        <!--顶栏-开始-->
+        <div id="include_head" class="row"></div>
+        <!--顶栏-结束-->
+        <div class="row">
+            <!--侧边导航栏-开始-->
+            <div id="include_list" class="content col-md-2 col-sm-3 col-xs-3"></div>
+            <!--侧边导航栏-结束-->
+
+            <!--正文内容-->
+            <div class="col-md-10 col-sm-9 col-xs-9">
+                <div class="container-fluid scrollball">
+                    <div class="row-fluid"></div>
+                    <br>
+                    <br>
+                    <span>
+                        <div style="background-color: #b8b8b8; width: 5px; height: 18px; float: left;"></div>&nbsp票房
+                    </span>
+                    <div style="position: relative; height: 50vh;">
+                        <canvas id="myChart1" style="display: inline-table; width: 98%;"></canvas>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row piethree">
+
+                        <div 
+                            class="col-md-4 col-sm-4">
+                            <div style="background-color: #b8b8b8; width: 5px; height: 18px; float: left;">
+                            </div>&nbsp国别分布
+                            <div style="position: relative; height: 30vh;">
+                                <canvas id="myChart2" style=" border: 1px solid #e7e7e7;">
+                                </canvas>
+                            </div>
+                        </div>
+
+                        <div 
+                            class="col-md-4 col-sm-4">
+                            <div style="background-color: #b8b8b8; width: 5px; height: 18px; float: left;">
+                            </div>&nbsp制片分布
+                            <div style="position: relative; height: 30vh;">
+                                <canvas id="myChart3" style=" border: 1px solid #e7e7e7;">
+                                </canvas>
+                            </div>
+                        </div>
+
+                        <div
+                            class="col-md-4 col-sm-4">
+
+                            <div style="background-color: #b8b8b8; width: 5px; height: 18px; float: left;">
+                            </div>&nbsp地域分布
+                            <div style="position: relative; height: 30vh;">
+                                <canvas id="myChart4" style=" border: 1px solid #e7e7e7;">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <br>
+                    <div>
+
+                        <span>
+                            <div style="background-color: #b8b8b8; width: 5px; height: 18px; float: left;"></div>
+                            &nbsp票房详情
+                        </span>
+                        <table id="table0" data-t data-url="/trendbywholegrail_day_list" data-search="false"
+                            data-pagination="true" data-page-size="20" data-search-highlight="true"
+                            style="display: inline-table; width: 98%;">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function draw(data, id) {
+
+            data = data.reverse();
+            data = data.slice(0, 10);
+            data = data.reverse();
+            var label = [];
+            var dataset = [];
+            if (id == 1) {
+                data.forEach(element => {
+                    label.push(element['InsertDate']);
+                    dataset.push(element['BoxOffice'])
+                });
+
+                new Chart(document.getElementById('myChart1'), {
+                    "type": "line",  //图表类型：折线图
+                    "data": {
+                        "labels": label,
+                        "datasets": [
+                            {
+                                "label": "票房",
+                                "data": dataset,
+                                "backgroundColor": ["rgb(100, 150, 200)"],
+                                "tension": "0.4"
+                            }]
+                    },
+                    "options": {
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false,
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    callback: function (label, index, labels) {
+                                        return (label / 100000000).toFixed(1) + '亿';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            else if (id == 2) {
+                data.forEach(element => {
+                    label.push(element['MovieProperty']);
+                    dataset.push(element['BoxOffice'])
+                });
+            }
+            else if (id == 3) {
+                data.forEach(element => {
+                    label.push(element['MovieFormat']);
+                    dataset.push(element['BoxOffice'])
+                });
+            }
+            else if (id == 4) {
+                data.forEach(element => {
+                    label.push(element['CityLevelName']);
+                    dataset.push(element['BoxOffice'])
+                });
+            }
+
+            if (id != 1) {
+                new Chart(document.getElementById('myChart' + id), {
+                    "type": "doughnut",  //图表类型：饼状图
+                    "data": {
+                        "labels": label,
+                        "datasets": [
+                            {
+                                "label": "My First Dataset",
+                                "data": dataset,
+                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(23, 222, 145)"
+                                    , "rgb(105, 152, 173)", "rgb(74, 54, 122)"]
+                            }]
+                    },
+                    "options": {
+                        // responsive: false,  //使得<canvas>的长宽度有效
+                        maintainAspectRatio: false,
+                        // aspectRatio: 1,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    //配置图例属性
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            },
+                        },
+                    }
+                });
+            };
+        }
+
+        //请求数据
+        $(function () {
+            $.ajax({
+                url: "/trebywholegrail_day_chart1",  //曲线图相关数据
+                type: "get",
+                success: function (tdata) {
+                    // console.log(tdata);
+                    // 画图函数
+                    draw(tdata, 1);
+                }
+            })
+        })
+        $(function () {
+            $.ajax({
+                url: "/trebywholegrail_day_chart2",  //国别分布饼状图相关数据
+                type: "get",
+                success: function (tdata) {
+                    // console.log(tdata);
+                    // 画图函数
+                    draw(tdata, 2)
+                }
+            })
+        })
+        $(function () {
+            $.ajax({
+                url: "/trebywholegrail_day_chart3",  //制式分布饼状图
+                type: "get",
+                success: function (tdata) {
+                    // console.log(tdata);
+                    // 画图函数
+                    draw(tdata, 3)
+                }
+            })
+        })
+        $(function () {
+            $.ajax({
+                url: "/trebywholegrail_day_chart4",  //地域分布饼状图
+                type: "get",
+                success: function (tdata) {
+                    // console.log(tdata);
+                    // 画图函数
+                    draw(tdata, 4)
+                }
+            })
+        })
+
+        let $table0 = $('#table0')
+        function initTable() {
+            $table0.bootstrapTable({
+                paginationDetailHAlign: ' hidden',  //隐藏分页信息
+                columns: [{
+                    field: 'InsertDate',
+                    title: '时间',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+
+                }, {
+                    field: 'BoxOffice',
+                    title: '票房(万)',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                }, {
+                    field: 'ShowCount',
+                    title: '场次',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                }, {
+                    field: 'ShowCountMoM',
+                    title: '场次环比',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                }, {
+                    field: 'AudienceCount',
+                    title: '人次(万)',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                }, {
+                    field: 'AudienceCountMoM',
+                    title: '人次环比',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                }, {
+                    field: 'AvgBoxOffice',
+                    title: '平均票价',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                }, {
+                    field: 'MovieNameInfo',
+                    title: '单日票房冠军',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'ServicePrice',
+                    title: '服务费(万)',
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                },
+                ],
+            })
+        }
+
+        $(function () {
+            initTable();
+        })
+
+
+
+
+        //导入html文件
+        $(function () {
+            $("#include_list").load("/html/layouts/menu_list.html");
+        });
+
+        $(function () {
+            $("#include_head").load("/html/layouts/head.html");
+        });
+    </script>
+
+</body>
+
+</html>

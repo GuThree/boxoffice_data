@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <title>壹玖影数</title>
+    <script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fuild">
+
+        <!--顶栏-开始-->
+        <div id="include_head" class="row"></div>
+        <!--顶栏-结束-->
+        <div class="row">
+            <!--侧边导航栏-开始-->
+            <div id="include_list" class="content col-md-2 col-sm-3 col-xs-3"></div>
+            <!--侧边导航栏-结束-->
+
+            <!--正文内容-->
+
+            <div class="col-md-10 col-sm-9 col-xs-9">
+                <div class="container-fluid scrollball">
+                    <div class="row-fluid">
+                        <table id="table0" data-t data-url="/mar_rank_movlist" data-search="true" data-pagination="true"
+                            data-page-size="20" data-search-highlight="true" style="display: inline-table; width: 95%;">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <script>
+        let $table0 = $('#table0')
+
+
+        function initTable() {
+            $table0.bootstrapTable({
+                // height: 550,
+                paginationDetailHAlign: ' hidden',  //隐藏分页信息
+                columns: [{
+                    field: 'MovieName',
+                    title: '影片名称',
+                    align: 'center',
+                    valign: 'middle',
+
+                }, {
+                    field: 'ReleaseTime',
+                    title: '上映日期',
+                    align: 'center',
+                    valign: 'middle'
+                }, {
+                    field: 'BuyTicketIndex',
+                    title: '购票指数',
+                    sortable: true,
+                    align: 'center',
+                    valign: 'middle'
+                }, {
+                    field: 'MovieGenre',
+                    title: '影片类型',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    field: 'IrankMoM',
+                    title: '排位变化',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                ],
+            })
+        }
+
+
+        $(function () {
+            initTable()
+        })
+
+        //请求数据
+        // $(function () {
+        //     $.ajax({
+        //         url: "/mar_rank_movlist",
+        //         type: "get",
+        //         success: function (tdata) {
+
+        //             // 画图函数
+        //             make_table(tdata)
+        //         }
+        //     })
+
+        // })
+
+
+        //导入html文件
+        $(function () {
+            $("#include_list").load("/html/layouts/menu_list.html");
+        });
+
+        $(function () {
+            $("#include_head").load("/html/layouts/head.html");
+        });
+
+    </script>
+
+</body>
+
+</html>

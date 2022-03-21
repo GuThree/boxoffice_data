@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <style>
+        .parent {
+            height: 500px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .child {
+            height: 300px;
+            width: 300px;
+            border: 0.5px solid;
+            border-color: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body background="./imgs/sky.jfif" style="background-repeat:no-repeat; background-size:100% 100%; background-attachment: fixed;">
+    <div class="parent">
+        <div class="child">
+            <form action="">
+                <div class="form-group">
+                    <h4 for="exampleInputEmail" align="center" style="color: white;">用户名</h4>
+                    <input type="text" class="form-control" id="UserName" placeholder="请输入用户名" style="width: 200px; margin-left: 49.2px;">
+                </div>
+
+                <div class="form-group ">
+                    <h4 for="exampleInputPassword1 " align="center" style="color: white; ">密码</h4>
+                    <input type="password" class="form-control password" id="pwd" placeholder="请输入密码 " style="width: 200px; margin-left: 49.2px;">
+                </div>
+
+                <input type="button" class="btn " style="width: 200px; margin-top: 10px; margin-left: 50px; margin-bottom: 10px; background-color: #b8b8b8;" value="登录"></input>
+                <br><a style="color: white; margin-left: 98px; font-size: 5px;" href="register">没有账号?立即注册</a>
+                <br><br><a style="color: white; margin-left: 124.5px; font-size: 5px;" href="boxOffice">返回首页</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $("input[type=button]").click(function(e) {
+            var userName = document.getElementById("UserName").value;
+            var pwd = document.getElementById("pwd").value;
+            if (userName == "" || pwd == "") {
+                alert("账号名和密码不能为空");
+            } else {
+                $.ajax({
+                    url: '/loginAccount',
+                    type: 'post',
+                    data: { userName, pwd},//向服务器（接口）传递的参数
+                    success: function (data) {
+                        if(data.length == 0){
+                            alert('无该用户');
+                        }else{
+                            if(data != "1"){
+                                alert('密码错误');
+                            }else{
+                                sessionStorage.setItem('UserName', userName);
+                                window.location.href = '/boxOffice';
+                            }
+                        }
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

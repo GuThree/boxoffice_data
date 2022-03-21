@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <style>
+        .parent {
+            height: 500px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .child {
+            height: 400px;
+            width: 450px;
+            border: 0.5px solid;
+            border-color: white;
+            border-radius: 10px;
+        }
+
+        .btn{
+            width: 200px;
+            margin-top: 10px;
+            margin-left: 124.3px;
+            margin-bottom: 10px;
+            background-color: #b8b8b8;
+        }
+    </style>
+</head>
+
+<body background="./imgs/sky.jfif" style="background-repeat:no-repeat; background-size:100% 100%; background-attachment: fixed;">
+    <div class="parent">
+        <div class="child">
+            <form action="/register/post" method="post">
+                <div class="form-group">
+                    <h4 align="center" style="color: white;">用户名</h4>
+                    <input type="text" class="form-control" name="UserName" id="UserName" placeholder="3-16位英文字母" style="width: 200px; margin-left: 124.3px;">
+                    <p id="UserNameText" style="height:5px; margin-left: 124.3px; color: red; font-size: 5px;"></p>
+                </div>
+
+                <div class="form-group">
+                    <h4  align="center" style="color: white;">邮箱</h4>
+                    <input type="email" class="form-control" name="Email" id="Email"  placeholder="请输入邮箱" style="width: 200px; margin-left: 124.3px;">
+                    <p id="EmailText" style="width: 200px; height:5px; margin-left: 124.3px; color: red; font-size: 5px;"></p>
+                </div>
+
+                <div class="form-group">
+                    <h4 for="exampleInputPassword1 " align="center " style="color: white; ">密码</h4>
+                    <input type="password" class="form-control password" name="pwd"  id="pwd" placeholder="请输入密码 " style="width: 200px; margin-left: 124.3px;">
+                    <p id="pwdText" style="width: 200px; height:30px; margin-left: 124.3px; color: red; font-size: 5px;"></p>
+                </div>
+
+                <input type="button" class="btn" value="注册"></input>
+                <br><a style="color: white; margin-left: 199px; font-size: 5px;" href="login">返回登录</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $("input[type=button]").click(function(e){
+            //用户输入正则表达式测试
+            var emailRegex = /^[A-Za-zd0-9]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/;  //邮箱正则表达式
+            var userNameRegex = /^[a-zA-Z]{3,18}$/;  //3-18位大小写英文字母
+            var passwordRegex = /^[a-zA-Z]{3,18}$/;  //3-18位大小写英文字母
+
+            var email = document.getElementById("Email").value;
+            var userName = document.getElementById("UserName").value;
+            var password = document.getElementById("pwd").value;
+
+            var isEmailValid = emailRegex.test(email)
+            if(isEmailValid!=true){
+                var EmailText=document.getElementById("EmailText");        
+                EmailText.innerText="邮箱格式不正确!";
+            } else{
+                var EmailText=document.getElementById("EmailText");
+                EmailText.innerText="";
+            }
+
+            var isUserNameValid = userNameRegex.test(userName)
+            if(isUserNameValid!=true){
+                var UserNameText=document.getElementById("UserNameText");        
+                UserNameText.innerText="用户姓名不正确!";
+            } else{
+                var UserNameText=document.getElementById("UserNameText");        
+                UserNameText.innerText="";
+            }
+
+            var isPasswordValid = passwordRegex.test(password)
+            if(isPasswordValid!=true){
+                var pwdText=document.getElementById("pwdText");        
+                pwdText.innerText="密码格式不正确!";
+            } else{
+                var EmailText=document.getElementById("pwdText");
+                EmailText.innerText="";
+            }
+
+            //将数据传送到服务器端
+            if(isEmailValid==true && isUserNameValid==true && isPasswordValid==true ){
+                $.ajax({       //用ajax来实现不刷新网页的基础上更新数据
+                    type:"post", //请求方式
+                    url:"/registerAccount", //路径
+                    data:{
+                        UserName:$("input[name=UserName]").val(),  //获取input中name为UserName的值
+                        Password:$("input[name=pwd]").val(), //获取input中name为Password的值
+                        Email:$("input[name=Email]").val(),  //获取input中name为Email的值
+                    },
+                    success:function(){
+                        alert("注册成功");
+                        window.location = "login"; //注册成功就跳转到login.html
+                    }
+                });
+            }
+        })
+    </script>
+
+</body>
+
+</html>

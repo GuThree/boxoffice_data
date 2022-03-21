@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>壹玖影数</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fuild">
+
+        <!--顶栏-开始-->
+        <div id="include_head" class="row"></div>
+        <!--顶栏-结束-->
+        <div class="row">
+            <!--侧边导航栏-开始-->
+            <div id="include_list" class="content col-md-2 col-sm-3 col-xs-3"></div>
+            <!--侧边导航栏-结束-->
+
+            <!--正文内容-->
+
+            <div class="col-md-10 col-sm-9 col-xs-9">
+                <div class="container-fluid scrollball">
+                    <div class="row-fluid">
+                        <br>
+                        <br>
+                        <span>
+                            <div style="background-color: #b8b8b8; width: 5px; height: 18px; float: left;"></div>
+                            &nbsp全部影片票房排行榜
+                        </span>
+                        <table id="table0" data-t data-url="/rankingData" data-search="false" data-pagination="true"
+                            data-page-size="50" data-search-highlight="true" style="display: inline-table; width: 98%;">
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script>
+            //请求数据
+            $(function () {
+                initTable();
+            })
+
+
+            let $table0 = $('#table0')
+            function initTable() {
+                $table0.bootstrapTable({
+                    paginationDetailHAlign: ' hidden',  //隐藏分页信息
+                    columns: [{
+                        field: 'Irank',
+                        title: '排名',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true,
+
+                    }, {
+                        field: 'MovieName',
+                        title: '影片名称',
+                        align: 'center',
+                        valign: 'middle'
+                    }, {
+                        field: 'ReleaseTime',
+                        title: '上映日期',
+                        align: 'center',
+                        valign: 'middle',
+                    }, {
+                        field: 'BoxOffice',
+                        title: '累计票房(万)',
+                        align: 'center',
+                        valign: 'middle'
+                    }, {
+                        field: 'AvgBoxOffice',
+                        title: '平均票价',
+                        align: 'center',
+                        valign: 'middle',
+                    }, {
+                        field: 'AvgAudienceCount',
+                        title: '场均人次',
+                        align: 'center',
+                        valign: 'middle',
+                    },
+                    ],
+                })
+            }
+
+            //导入html文件
+            $(function () {
+                $("#include_list").load("/html/layouts/menu_list.html");
+            });
+
+            $(function () {
+                $("#include_head").load("/html/layouts/head.html");
+            });
+        </script>
+
+</body>
+
+</html>
