@@ -64,9 +64,9 @@
     <script>
         $("input[type=button]").click(function(e){
             //用户输入正则表达式测试
-            var emailRegex = /^[A-Za-zd0-9]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/;  //邮箱正则表达式
-            var userNameRegex = /^[a-zA-Z]{3,18}$/;  //3-18位大小写英文字母
-            var passwordRegex = /^[a-zA-Z]{3,18}$/;  //3-18位大小写英文字母
+            var emailRegex = /^[A-Za-zd0-9]+([-_.][A-Za-zd]+)*@([A-Za-zd0-9]+[-.])+[A-Za-zd0-9]{2,5}$/;  //邮箱正则表达式
+            var userNameRegex = /^[a-zA-Zd0-9]{3,18}$/;  //3-18位字符
+            var passwordRegex = /^[a-zA-Zd0-9]{3,18}$/;  //3-18位字符
 
             var email = document.getElementById("Email").value;
             var userName = document.getElementById("UserName").value;
@@ -84,7 +84,7 @@
             var isUserNameValid = userNameRegex.test(userName)
             if(isUserNameValid!=true){
                 var UserNameText=document.getElementById("UserNameText");        
-                UserNameText.innerText="用户姓名不正确!";
+                UserNameText.innerText="用户姓名不正确!3-18位字符";
             } else{
                 var UserNameText=document.getElementById("UserNameText");        
                 UserNameText.innerText="";
@@ -93,7 +93,7 @@
             var isPasswordValid = passwordRegex.test(password)
             if(isPasswordValid!=true){
                 var pwdText=document.getElementById("pwdText");        
-                pwdText.innerText="密码格式不正确!";
+                pwdText.innerText="密码格式不正确!3-18位字符";
             } else{
                 var EmailText=document.getElementById("pwdText");
                 EmailText.innerText="";

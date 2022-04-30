@@ -193,13 +193,13 @@
                 success:function(data){
                     //解析json数据并进行处理
                     var userInfo = JSON.parse(data.toString())
-                    var {UserName, Email, registrationTime} = userInfo[0]
-                    var newTime = new Date(registrationTime)
-                    registrationTime = newTime.getFullYear() + '-' + (newTime.getMonth() + 1) + '-' + newTime.getDate()
+                    var {UserName, Email, RegistrationTime} = userInfo[0]
+                    // var newTime = new Date(registrationTime)
+                    // registrationTime = newTime.getFullYear() + '-' + (newTime.getMonth() + 1) + '-' + newTime.getDate()
 
                     userNameText.innerHTML = "用户姓名："+UserName
                     emailText.innerHTML = "用户邮箱："+Email
-                    registrationTimeText.innerHTML = "注册时间："+registrationTime
+                    registrationTimeText.innerHTML = "注册时间："+RegistrationTime
                 }
             });
         } else {

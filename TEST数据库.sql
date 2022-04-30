@@ -25,13 +25,13 @@ CREATE TABLE `user_list` (
   `UserName` varchar(200) NOT NULL,
   `Password` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL,
-  `Name` varchar(200) NOT NULL,
+  `RegistrationTime` varchar(200) NOT NULL,
   PRIMARY KEY (`UserName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `trebywholegrail_day_chart3` */
 
-insert  into `user_list`(`UserName`,`Password`,`Email`,`Name`) values ('hhf','12345678','879@qq.com','aname');
+insert  into `user_list`(`UserName`,`Password`,`Email`,`RegistrationTime`) values ('hhf','12345678','879@qq.com','2022-01-01');
 
 /*Table structure for table `comment_list` */
 

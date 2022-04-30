@@ -67,7 +67,7 @@ router.post("/registerAccount", function(req, res) {
     var time = new Date()
     var registrationTime = date_format(time)
     console.log(time, registrationTime);
-    var sql = "insert into user_list (UserName,Password,Email,registrationTime) values ('" + UserName + "','" + Password + "','" + Email + "','" + registrationTime + "')"
+    var sql = "insert into user_list (UserName,Password,Email,registrationTime) values ('" + UserName + "','" + Password + "','" + Email + "','" + registrationTime.toString() + "')"
     db.query(sql, function (err, data) {
         if(err!=null)   console.log(err)
     })

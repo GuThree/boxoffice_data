@@ -3,8 +3,8 @@ const mysql = require('mysql')
 const db = mysql.createPool({
     host: '127.0.0.1', // 数据库所在的服务器地址
     user: 'root', //登录数据库的账号
-    password: '12345666', //登录数据库的密码
-    database: 'test' //指定操作数据库
+    password: 'gsr3316806', //登录数据库的密码
+    database: 'test' //指定操作数据
 })
 
 module.exports = db
